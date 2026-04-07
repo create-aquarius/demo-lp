@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RECRUIT | NextVision Inc.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #ffffff; /* 白基調に変更 */
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+        .en-font {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* 鮮やかなグラデーションテキスト */
+        .text-gradient {
+            background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* 無限に流れるテキスト（マーキー） */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            position: absolute;
+            width: 100vw;
+            opacity: 0.03;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* テキストの出現用マスク */
+        .reveal-mask {
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .reveal-mask-inner {
+            display: inline-block;
+            transform: translateY(100%);
+        }
+
+        /* カスタムスクロールバー */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="antialiased selection:bg-blue-200 selection:text-blue-900">
+
+    <!-- Header -->
+    <header class="fixed w-full z-50 transition-all duration-300" id="header">
+        <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+            <div class="text-2xl font-black en-font tracking-tighter text-white transition-colors duration-300" id="logo">NextVision.</div>
+            <nav class="hidden md:flex space-x-10">
+                <a href="#message" class="text-sm font-bold tracking-widest text-white hover:opacity-70 transition en-font nav-link">MESSAGE</a>
+                <a href="#members" class="text-sm font-bold tracking-widest text-white hover:opacity-70 transition en-font nav-link">MEMBERS</a>
+                <a href="#culture" class="text-sm font-bold tracking-widest text-white hover:opacity-70 transition en-font nav-link">CULTURE</a>
+            </nav>
+            <a href="#entry" class="bg-blue-600 text-white px-6 py-3 text-sm font-bold tracking-widest hover:bg-blue-700 transition en-font rounded-full shadow-lg shadow-blue-500/30">
+                ENTRY
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section (動画背景) -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- 背景画像（生成した画像に変更） -->
+        <div class="absolute inset-0 w-full h-full">
+            <img src="./images/hero.png" alt="メインビジュアル" class="object-cover w-full h-full scale-105" id="hero-bg">
+            <!-- グラデーションのオーバーレイで透明感を演出 -->
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-900/60 to-purple-900/40 mix-blend-multiply"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 w-full max-w-5xl mt-20">
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black leading-tight mb-6 tracking-tight text-white">
+                <span class="reveal-mask block"><span class="reveal-mask-inner hero-text">想像を超える</span></span>
+                <span class="reveal-mask block"><span class="reveal-mask-inner hero-text">未来を、ここから。</span></span>
+            </h1>
+            <p class="text-lg md:text-xl text-white/80 tracking-widest font-medium mt-8 opacity-0 hero-sub en-font">
+                INNOVATE THE STANDARD.
+            </p>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center opacity-80 text-white">
+            <span class="en-font text-xs tracking-widest mb-2">SCROLL</span>
+            <div class="w-[1px] h-16 bg-white/30 overflow-hidden">
+                <div class="w-full h-full bg-white scroll-line"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Message Section -->
+    <section id="message" class="py-32 md:py-48 relative overflow-hidden bg-gray-50">
+        <!-- 背景の流れるテキスト -->
+        <div class="marquee-container top-1/4 text-8xl md:text-9xl font-black en-font">
+            <div class="marquee-content">
+                NEXTVISION RECRUIT 2026 - INNOVATE THE STANDARD - NEXTVISION RECRUIT 2026 - INNOVATE THE STANDARD - 
+            </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <div class="mb-16">
+                <span class="en-font text-blue-600 font-bold tracking-widest text-sm block mb-4 fade-up">01. MESSAGE</span>
+                <h2 class="text-3xl md:text-5xl font-bold leading-relaxed tracking-tight">
+                    <span class="reveal-mask block"><span class="reveal-mask-inner msg-text">当たり前を疑い、</span></span>
+                    <span class="reveal-mask block"><span class="reveal-mask-inner msg-text text-gradient">新しい「基準」を創る。</span></span>
+                </h2>
+            </div>
+            
+            <div class="space-y-8 text-gray-600 text-lg md:text-xl leading-loose font-medium fade-up delay-200">
+                <p>
+                    私たちが目指すのは、単なる便利なツールの提供ではありません。<br class="hidden md:block">
+                    人々の生活に深く根付き、無くてはならないインフラとなるプロダクト。<br class="hidden md:block">
+                    それこそが、私たちの追求するモノづくりです。
+                </p>
+                <p>
+                    変化の激しい時代において、過去の成功体験は通用しません。<br class="hidden md:block">
+                    常にゼロベースで思考し、技術の限界に挑み続ける。<br class="hidden md:block">
+                    そんな熱狂できる仲間を、私たちは探しています。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Culture Section (パララックス強化) -->
+    <section id="culture" class="py-32 bg-white relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-24 text-center fade-up">
+                <span class="en-font text-blue-600 font-bold tracking-widest text-sm block mb-2">02. CULTURE</span>
+                <h2 class="text-4xl md:text-6xl font-black en-font tracking-tighter">ENVIRONMENT</h2>
+            </div>
+
+            <!-- Culture Block 1 -->
+            <div class="flex flex-col md:flex-row items-center gap-12 mb-32 md:mb-48 culture-block">
+                <!-- 生成した画像はこちらの src に差し替えてください -->
+                <div class="w-full md:w-1/2 overflow-hidden rounded-2xl shadow-2xl img-wrapper relative">
+                    <div class="absolute inset-0 bg-blue-600/10 z-10 mix-blend-overlay"></div>
+                    <img src="./images/culture-meeting.png" alt="ミーティング風景" class="w-full h-[400px] md:h-[500px] object-cover parallax-img scale-125">
+                </div>
+                <div class="w-full md:w-1/2 text-content">
+                    <h3 class="text-3xl font-bold mb-6 text-gradient">フラットでオープンな議論</h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        役職や年齢に関係なく、誰もがフラットに意見を言い合える環境です。プロダクトを良くするためのアイデアであれば、新入社員の提案でも翌日には実装に向けて動き出すスピード感があります。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Culture Block 2 -->
+            <div class="flex flex-col md:flex-row-reverse items-center gap-12 culture-block">
+                <!-- 生成した画像はこちらの src に差し替えてください -->
+                <div class="w-full md:w-1/2 overflow-hidden rounded-2xl shadow-2xl img-wrapper relative">
+                    <div class="absolute inset-0 bg-purple-600/10 z-10 mix-blend-overlay"></div>
+                    <img src="./images/culture-challenge.png" alt="プレゼンテーション" class="w-full h-[400px] md:h-[500px] object-cover parallax-img scale-125">
+                </div>
+                <div class="w-full md:w-1/2 text-content">
+                    <h3 class="text-3xl font-bold mb-6 text-gradient">挑戦を讃え、失敗から学ぶ</h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        私たちは「行動しないこと」を最大のリスクと捉えています。新しい技術の導入や未知の市場への挑戦を推奨し、もし失敗してもそこから得た学びをチーム全体で共有する文化が根付いています。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Members Section -->
+    <section id="members" class="py-32 bg-gray-50 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-20 flex flex-col md:flex-row justify-between items-end fade-up">
+                <div>
+                    <span class="en-font text-blue-600 font-bold tracking-widest text-sm block mb-2">03. MEMBERS</span>
+                    <h2 class="text-4xl md:text-6xl font-black en-font tracking-tighter">PEOPLE</h2>
+                </div>
+                <a href="#" class="hidden md:flex items-center text-blue-600 font-bold hover:text-blue-800 transition">
+                    メンバー一覧を見る <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 md:gap-12">
+                <!-- Member 1 -->
+                <div class="group cursor-pointer member-card">
+                    <!-- 生成した画像はこちらの src に差し替えてください -->
+                    <div class="overflow-hidden mb-6 relative aspect-[3/4] rounded-2xl shadow-lg">
+                        <img src="./images/member-tanaka.png" alt="社員" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                            <span class="text-white border border-white/50 backdrop-blur-sm px-6 py-2 rounded-full font-bold text-xs tracking-widest inline-block w-max mb-4">
+                                INTERVIEW <i data-lucide="arrow-up-right" class="inline w-3 h-3 ml-1"></i>
+                            </span>
+                            <p class="text-white text-sm">「ユーザーが触れて感動するUIを、ミリ単位で追求し続ける」</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-blue-600 font-bold tracking-widest mb-1 en-font">FRONTEND ENGINEER</p>
+                    <h3 class="text-2xl font-bold">K. Tanaka</h3>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="group cursor-pointer member-card md:mt-12">
+                    <!-- 生成した画像はこちらの src に差し替えてください -->
+                    <div class="overflow-hidden mb-6 relative aspect-[3/4] rounded-2xl shadow-lg">
+                        <img src="./images/member-sato.png" alt="社員" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                            <span class="text-white border border-white/50 backdrop-blur-sm px-6 py-2 rounded-full font-bold text-xs tracking-widest inline-block w-max mb-4">
+                                INTERVIEW <i data-lucide="arrow-up-right" class="inline w-3 h-3 ml-1"></i>
+                            </span>
+                            <p class="text-white text-sm">「デザインは課題解決の手段。見た目の美しさと機能性を両立させる」</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-purple-600 font-bold tracking-widest mb-1 en-font">UI/UX DESIGNER</p>
+                    <h3 class="text-2xl font-bold">M. Sato</h3>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="group cursor-pointer member-card md:mt-24">
+                    <!-- 生成した画像はこちらの src に差し替えてください -->
+                    <div class="overflow-hidden mb-6 relative aspect-[3/4] rounded-2xl shadow-lg">
+                        <img src="./images/member-suzuki.png" alt="社員" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                            <span class="text-white border border-white/50 backdrop-blur-sm px-6 py-2 rounded-full font-bold text-xs tracking-widest inline-block w-max mb-4">
+                                INTERVIEW <i data-lucide="arrow-up-right" class="inline w-3 h-3 ml-1"></i>
+                            </span>
+                            <p class="text-white text-sm">「事業の成長とユーザー価値の最大化、その交差点を見つけ出す」</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-blue-600 font-bold tracking-widest mb-1 en-font">PRODUCT MANAGER</p>
+                    <h3 class="text-2xl font-bold">Y. Suzuki</h3>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center md:hidden">
+                <a href="#" class="inline-flex items-center text-blue-600 font-bold hover:text-blue-800 transition">
+                    メンバー一覧を見る <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA / Entry Section -->
+    <section id="entry" class="py-40 text-center relative overflow-hidden">
+        <!-- 鮮やかなグラデーション背景 -->
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 z-0"></div>
+        
+        <!-- 背景の装飾（光のぼかし） -->
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-white/20 rounded-full blur-3xl mix-blend-overlay"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-300/30 rounded-full blur-3xl mix-blend-overlay"></div>
+
+        <div class="relative z-10 max-w-3xl mx-auto px-6 fade-up">
+            <h2 class="text-4xl md:text-6xl font-black mb-8 en-font tracking-tighter text-white">JOIN US</h2>
+            <p class="text-xl text-white/90 font-medium mb-12">
+                私たちと一緒に、世界を変えるプロダクトを創りませんか？<br>
+                まずはカジュアルにお話ししましょう。
+            </p>
+            <a href="#" onclick="alert('エントリーフォームへ遷移します')" class="inline-flex items-center justify-center bg-white text-blue-600 px-12 py-5 rounded-full text-lg font-bold tracking-widest hover:bg-gray-100 hover:scale-105 transition duration-300 shadow-2xl shadow-black/20 group">
+                <span class="en-font">ENTRY NOW</span>
+                <i data-lucide="arrow-right" class="ml-4 w-5 h-5 group-hover:translate-x-2 transition"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="text-2xl font-black text-white en-font tracking-tighter mb-4 md:mb-0">NextVision.</div>
+            <div class="text-sm en-font tracking-widest">
+                &copy; 2026 NextVision Inc. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize Scripts -->
+    <script>
+        lucide.createIcons();
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Header Background change on scroll (白背景への適応)
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            const logo = document.getElementById('logo');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            if (window.scrollY > 50) {
+                header.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-4');
+                header.classList.remove('py-6');
+                logo.classList.replace('text-white', 'text-gray-900');
+                navLinks.forEach(link => link.classList.replace('text-white', 'text-gray-600'));
+            } else {
+                header.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-4');
+                header.classList.add('py-6');
+                logo.classList.replace('text-gray-900', 'text-white');
+                navLinks.forEach(link => link.classList.replace('text-gray-600', 'text-white'));
+            }
+        });
+
+        // 1. Hero Animations
+        const tl = gsap.timeline();
+        tl.to(".hero-text", {
+            y: 0,
+            duration: 1.2,
+            stagger: 0.2,
+            ease: "power4.out",
+            delay: 0.5
+        })
+        .to(".hero-sub", {
+            opacity: 1,
+            y: -10,
+            duration: 1,
+            ease: "power2.out"
+        }, "-=0.5")
+        .to("#hero-bg", {
+            scale: 1, // 画像がゆっくりズームアウトする効果
+            duration: 3,
+            ease: "power2.out"
+        }, "-=2");
+
+        gsap.to(".scroll-line", {
+            y: "100%", duration: 1.5, repeat: -1, ease: "power2.inOut"
+        });
+
+        // 2. Message Reveal Animation (マスクから文字が出る)
+        gsap.utils.toArray(".msg-text").forEach(text => {
+            gsap.to(text, {
+                scrollTrigger: {
+                    trigger: "#message",
+                    start: "top 70%",
+                },
+                y: 0,
+                duration: 1.2,
+                ease: "power4.out",
+                stagger: 0.2
+            });
+        });
+
+        // 汎用フェードアップ
+        gsap.utils.toArray(".fade-up").forEach(elem => {
+            gsap.from(elem, {
+                scrollTrigger: { trigger: elem, start: "top 85%" },
+                y: 40, opacity: 0, duration: 1, ease: "power3.out"
+            });
+        });
+
+        // 3. Culture Parallax Animations
+        gsap.utils.toArray(".culture-block").forEach(block => {
+            const img = block.querySelector(".parallax-img");
+            const content = block.querySelector(".text-content");
+            
+            // 画像枠の出現
+            gsap.from(block.querySelector(".img-wrapper"), {
+                scrollTrigger: { trigger: block, start: "top 80%" },
+                clipPath: "inset(0 100% 0 0 round 1rem)", // Tailwinの丸みと合わせる
+                duration: 1.5,
+                ease: "power4.inOut"
+            });
+            gsap.to(block.querySelector(".img-wrapper"), {
+                scrollTrigger: { trigger: block, start: "top 80%" },
+                clipPath: "inset(0 0% 0 0 round 1rem)",
+                duration: 1.5,
+                ease: "power4.inOut"
+            });
+
+            // 中の画像のパララックス
+            gsap.to(img, {
+                scrollTrigger: {
+                    trigger: block,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 1.5 // 少し遅れて動く
+                },
+                y: 80, 
+                ease: "none"
+            });
+            
+            // テキストの出現
+            gsap.from(content, {
+                scrollTrigger: { trigger: block, start: "top 60%" },
+                y: 50, opacity: 0, duration: 1, ease: "power3.out"
+            });
+        });
+
+        // 4. Members Cards
+        gsap.from(".member-card", {
+            scrollTrigger: { trigger: "#members", start: "top 70%" },
+            y: 80, opacity: 0, duration: 1, stagger: 0.2, ease: "power3.out"
+        });
+    </script>
+</body>
+</html>
